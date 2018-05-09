@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 5,
     "version" : 8,
-    "pipelineId" : "NYCTaxilocal2df3c52a-eba2-43cd-8a4e-ff0cd5bd7a79",
+    "pipelineId" : "NYCTaxilocald76bbd49-18b6-44d9-a4df-da6bbd8b6f47",
     "title" : "NYC_Taxi_local",
-    "description" : "StreamSets tutorial with local data",
-    "uuid" : "28f95c5b-fabb-4143-8836-311a082587a4",
+    "description" : "",
+    "uuid" : "fcbb7b09-6ca2-43f1-9c6a-ab074489a058",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -476,193 +476,27 @@
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
-      "instanceName" : "HadoopFS_01",
-      "library" : "streamsets-datacollector-cdh_5_14-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_hdfs_HdfsDTarget",
-      "stageVersion" : "4",
+      "instanceName" : "ExpressionEvaluator_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+      "stageVersion" : "2",
       "configuration" : [ {
-        "name" : "hdfsTargetConfigBean.hdfsUri",
-        "value" : "hdfs://10.0.25.73"
+        "name" : "expressionProcessorConfigs",
+        "value" : [ {
+          "fieldToSet" : "/",
+          "expression" : "${record:value('/')}"
+        } ]
       }, {
-        "name" : "hdfsTargetConfigBean.hdfsUser",
-        "value" : null
+        "name" : "headerAttributeConfigs",
+        "value" : [ {
+          "attributeToSet" : "/credit_card_type",
+          "headerAttributeExpression" : "n/a"
+        } ]
       }, {
-        "name" : "hdfsTargetConfigBean.hdfsKerberos",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.hdfsConfDir",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.hdfsConfigs",
-        "value" : [ { } ]
-      }, {
-        "name" : "hdfsTargetConfigBean.uniquePrefix",
-        "value" : "taxi"
-      }, {
-        "name" : "hdfsTargetConfigBean.fileNameSuffix",
-        "value" : "json"
-      }, {
-        "name" : "hdfsTargetConfigBean.dirPathTemplateInHeader",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.dirPathTemplate",
-        "value" : "/tmp/taxi/noCC/${YYYY()}-${MM()}-${DD()}-${hh()}"
-      }, {
-        "name" : "hdfsTargetConfigBean.timeZoneID",
-        "value" : "UTC"
-      }, {
-        "name" : "hdfsTargetConfigBean.timeDriver",
-        "value" : "${time:now()}"
-      }, {
-        "name" : "hdfsTargetConfigBean.maxRecordsPerFile",
-        "value" : 0
-      }, {
-        "name" : "hdfsTargetConfigBean.maxFileSize",
-        "value" : 0
-      }, {
-        "name" : "hdfsTargetConfigBean.idleTimeout",
-        "value" : "${1 * HOURS}"
-      }, {
-        "name" : "hdfsTargetConfigBean.compression",
-        "value" : "NONE"
-      }, {
-        "name" : "hdfsTargetConfigBean.otherCompression",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.fileType",
-        "value" : "TEXT"
-      }, {
-        "name" : "hdfsTargetConfigBean.keyEl",
-        "value" : "${uuid()}"
-      }, {
-        "name" : "hdfsTargetConfigBean.seqFileCompressionType",
-        "value" : "BLOCK"
-      }, {
-        "name" : "hdfsTargetConfigBean.lateRecordsLimit",
-        "value" : "${1 * HOURS}"
-      }, {
-        "name" : "hdfsTargetConfigBean.rollIfHeader",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.rollHeaderName",
-        "value" : "roll"
-      }, {
-        "name" : "hdfsTargetConfigBean.lateRecordsAction",
-        "value" : "SEND_TO_ERROR"
-      }, {
-        "name" : "hdfsTargetConfigBean.lateRecordsDirPathTemplate",
-        "value" : "/tmp/late/${YYYY()}-${MM()}-${DD()}"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataFormat",
-        "value" : "JSON"
-      }, {
-        "name" : "hdfsTargetConfigBean.hdfsPermissionCheck",
-        "value" : true
-      }, {
-        "name" : "hdfsTargetConfigBean.permissionEL",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.skipOldTempFileRecovery",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.charset",
-        "value" : "UTF-8"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvFileFormat",
-        "value" : "CSV"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvHeader",
-        "value" : "NO_HEADER"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvReplaceNewLines",
-        "value" : true
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvReplaceNewLinesString",
-        "value" : " "
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvCustomDelimiter",
-        "value" : "|"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvCustomEscape",
-        "value" : "\\"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvCustomQuote",
-        "value" : "\""
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.jsonMode",
-        "value" : "MULTIPLE_OBJECTS"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textFieldPath",
-        "value" : "/text"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textRecordSeparator",
-        "value" : "\\n"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textFieldMissingAction",
-        "value" : "ERROR"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textEmptyLineIfNull",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchemaSource",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchema",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.registerSchema",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
-        "value" : [ ]
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaRegistryUrls",
-        "value" : [ ]
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaLookupMode",
-        "value" : "SUBJECT"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.subject",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.subjectToRegister",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaId",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroCompression",
-        "value" : "NULL"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.binaryFieldPath",
-        "value" : "/"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.protoDescriptorFile",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.messageType",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.fileNameEL",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.wholeFileExistsAction",
-        "value" : "TO_ERROR"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.includeChecksumInTheEvents",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.checksumAlgorithm",
-        "value" : "MD5"
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.xmlPrettyPrint",
-        "value" : true
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.xmlValidateSchema",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.xmlSchema",
-        "value" : null
+        "name" : "fieldAttributeConfigs",
+        "value" : [ {
+          "fieldToSet" : "/"
+        } ]
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
@@ -675,202 +509,184 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Hadoop FS 1",
+        "label" : "Expression Evaluator 1",
         "xPos" : 500,
         "yPos" : 170,
-        "stageType" : "TARGET"
+        "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "StreamSelector_01OutputLane1525713630565" ],
-      "outputLanes" : [ ],
+      "outputLanes" : [ "ExpressionEvaluator_01OutputLane15258572477110" ],
       "eventLanes" : [ ],
       "services" : [ ]
     }, {
-      "instanceName" : "HadoopFS_02",
-      "library" : "streamsets-datacollector-cdh_5_14-lib",
-      "stageName" : "com_streamsets_pipeline_stage_destination_hdfs_HdfsDTarget",
-      "stageVersion" : "4",
+      "instanceName" : "LocalFS_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_destination_localfilesystem_LocalFileSystemDTarget",
+      "stageVersion" : "3",
       "configuration" : [ {
-        "name" : "hdfsTargetConfigBean.hdfsUri",
-        "value" : "hdfs://10.0.25.73"
+        "name" : "configs.uniquePrefix",
+        "value" : "out_"
       }, {
-        "name" : "hdfsTargetConfigBean.hdfsUser",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.hdfsKerberos",
-        "value" : false
-      }, {
-        "name" : "hdfsTargetConfigBean.hdfsConfDir",
-        "value" : null
-      }, {
-        "name" : "hdfsTargetConfigBean.hdfsConfigs",
-        "value" : [ { } ]
-      }, {
-        "name" : "hdfsTargetConfigBean.uniquePrefix",
-        "value" : "taxi"
-      }, {
-        "name" : "hdfsTargetConfigBean.fileNameSuffix",
+        "name" : "configs.fileNameSuffix",
         "value" : "csv"
       }, {
-        "name" : "hdfsTargetConfigBean.dirPathTemplateInHeader",
+        "name" : "configs.dirPathTemplateInHeader",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dirPathTemplate",
-        "value" : "/tmp/taxi/${YYYY()}-${MM()}-${DD()}-${hh()}"
+        "name" : "configs.dirPathTemplate",
+        "value" : "/home/centos/taxi/out"
       }, {
-        "name" : "hdfsTargetConfigBean.timeZoneID",
+        "name" : "configs.timeZoneID",
         "value" : "UTC"
       }, {
-        "name" : "hdfsTargetConfigBean.timeDriver",
+        "name" : "configs.timeDriver",
         "value" : "${time:now()}"
       }, {
-        "name" : "hdfsTargetConfigBean.maxRecordsPerFile",
+        "name" : "configs.maxRecordsPerFile",
         "value" : 0
       }, {
-        "name" : "hdfsTargetConfigBean.maxFileSize",
+        "name" : "configs.maxFileSize",
         "value" : 0
       }, {
-        "name" : "hdfsTargetConfigBean.idleTimeout",
+        "name" : "configs.idleTimeout",
         "value" : "${1 * HOURS}"
       }, {
-        "name" : "hdfsTargetConfigBean.compression",
+        "name" : "configs.compression",
         "value" : "NONE"
       }, {
-        "name" : "hdfsTargetConfigBean.otherCompression",
+        "name" : "configs.otherCompression",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.fileType",
+        "name" : "configs.fileType",
         "value" : "TEXT"
       }, {
-        "name" : "hdfsTargetConfigBean.keyEl",
+        "name" : "configs.keyEl",
         "value" : "${uuid()}"
       }, {
-        "name" : "hdfsTargetConfigBean.seqFileCompressionType",
-        "value" : "BLOCK"
-      }, {
-        "name" : "hdfsTargetConfigBean.lateRecordsLimit",
+        "name" : "configs.lateRecordsLimit",
         "value" : "${1 * HOURS}"
       }, {
-        "name" : "hdfsTargetConfigBean.rollIfHeader",
+        "name" : "configs.rollIfHeader",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.rollHeaderName",
+        "name" : "configs.rollHeaderName",
         "value" : "roll"
       }, {
-        "name" : "hdfsTargetConfigBean.lateRecordsAction",
+        "name" : "configs.lateRecordsAction",
         "value" : "SEND_TO_ERROR"
       }, {
-        "name" : "hdfsTargetConfigBean.lateRecordsDirPathTemplate",
+        "name" : "configs.lateRecordsDirPathTemplate",
         "value" : "/tmp/late/${YYYY()}-${MM()}-${DD()}"
       }, {
-        "name" : "hdfsTargetConfigBean.dataFormat",
+        "name" : "configs.dataFormat",
         "value" : "DELIMITED"
       }, {
-        "name" : "hdfsTargetConfigBean.hdfsPermissionCheck",
+        "name" : "configs.hdfsPermissionCheck",
         "value" : true
       }, {
-        "name" : "hdfsTargetConfigBean.permissionEL",
+        "name" : "configs.permissionEL",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.skipOldTempFileRecovery",
+        "name" : "configs.skipOldTempFileRecovery",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.charset",
+        "name" : "configs.dataGeneratorFormatConfig.charset",
         "value" : "UTF-8"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvFileFormat",
+        "name" : "configs.dataGeneratorFormatConfig.csvFileFormat",
         "value" : "CSV"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvHeader",
+        "name" : "configs.dataGeneratorFormatConfig.csvHeader",
         "value" : "WITH_HEADER"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvReplaceNewLines",
+        "name" : "configs.dataGeneratorFormatConfig.csvReplaceNewLines",
         "value" : true
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvReplaceNewLinesString",
+        "name" : "configs.dataGeneratorFormatConfig.csvReplaceNewLinesString",
         "value" : ""
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvCustomDelimiter",
+        "name" : "configs.dataGeneratorFormatConfig.csvCustomDelimiter",
         "value" : "|"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvCustomEscape",
+        "name" : "configs.dataGeneratorFormatConfig.csvCustomEscape",
         "value" : "\\"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.csvCustomQuote",
+        "name" : "configs.dataGeneratorFormatConfig.csvCustomQuote",
         "value" : "\""
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.jsonMode",
+        "name" : "configs.dataGeneratorFormatConfig.jsonMode",
         "value" : "MULTIPLE_OBJECTS"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textFieldPath",
+        "name" : "configs.dataGeneratorFormatConfig.textFieldPath",
         "value" : "/text"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textRecordSeparator",
+        "name" : "configs.dataGeneratorFormatConfig.textRecordSeparator",
         "value" : "\\n"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textFieldMissingAction",
+        "name" : "configs.dataGeneratorFormatConfig.textFieldMissingAction",
         "value" : "ERROR"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textEmptyLineIfNull",
+        "name" : "configs.dataGeneratorFormatConfig.textEmptyLineIfNull",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchemaSource",
+        "name" : "configs.dataGeneratorFormatConfig.avroSchemaSource",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchema",
+        "name" : "configs.dataGeneratorFormatConfig.avroSchema",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.registerSchema",
+        "name" : "configs.dataGeneratorFormatConfig.registerSchema",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+        "name" : "configs.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
         "value" : [ ]
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaRegistryUrls",
+        "name" : "configs.dataGeneratorFormatConfig.schemaRegistryUrls",
         "value" : [ ]
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaLookupMode",
+        "name" : "configs.dataGeneratorFormatConfig.schemaLookupMode",
         "value" : "SUBJECT"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.subject",
+        "name" : "configs.dataGeneratorFormatConfig.subject",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.subjectToRegister",
+        "name" : "configs.dataGeneratorFormatConfig.subjectToRegister",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaId",
+        "name" : "configs.dataGeneratorFormatConfig.schemaId",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroCompression",
+        "name" : "configs.dataGeneratorFormatConfig.avroCompression",
         "value" : "NULL"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.binaryFieldPath",
+        "name" : "configs.dataGeneratorFormatConfig.binaryFieldPath",
         "value" : "/"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.protoDescriptorFile",
+        "name" : "configs.dataGeneratorFormatConfig.protoDescriptorFile",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.messageType",
+        "name" : "configs.dataGeneratorFormatConfig.messageType",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.fileNameEL",
+        "name" : "configs.dataGeneratorFormatConfig.fileNameEL",
         "value" : null
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.wholeFileExistsAction",
+        "name" : "configs.dataGeneratorFormatConfig.wholeFileExistsAction",
         "value" : "TO_ERROR"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+        "name" : "configs.dataGeneratorFormatConfig.includeChecksumInTheEvents",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.checksumAlgorithm",
+        "name" : "configs.dataGeneratorFormatConfig.checksumAlgorithm",
         "value" : "MD5"
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.xmlPrettyPrint",
+        "name" : "configs.dataGeneratorFormatConfig.xmlPrettyPrint",
         "value" : true
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.xmlValidateSchema",
+        "name" : "configs.dataGeneratorFormatConfig.xmlValidateSchema",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.xmlSchema",
+        "name" : "configs.dataGeneratorFormatConfig.xmlSchema",
         "value" : null
       }, {
         "name" : "stageOnRecordError",
@@ -884,12 +700,12 @@
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "Hadoop FS 2",
-        "xPos" : 940,
-        "yPos" : 38,
+        "label" : "Local FS 1",
+        "xPos" : 1015,
+        "yPos" : 134,
         "stageType" : "TARGET"
       },
-      "inputLanes" : [ "FieldMasker_01OutputLane15257140437530" ],
+      "inputLanes" : [ "FieldMasker_01OutputLane15257140437530", "ExpressionEvaluator_01OutputLane15258572477110" ],
       "outputLanes" : [ ],
       "eventLanes" : [ ],
       "services" : [ ]
@@ -925,22 +741,22 @@
       "services" : [ ]
     },
     "info" : {
-      "pipelineId" : "NYCTaxilocal2df3c52a-eba2-43cd-8a4e-ff0cd5bd7a79",
+      "pipelineId" : "NYCTaxilocald76bbd49-18b6-44d9-a4df-da6bbd8b6f47",
       "title" : "NYC_Taxi_local",
-      "description" : "StreamSets tutorial with local data",
-      "created" : 1525708074618,
-      "lastModified" : 1525717988177,
+      "description" : "",
+      "created" : 1525856485837,
+      "lastModified" : 1525857343267,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "28f95c5b-fabb-4143-8836-311a082587a4",
+      "uuid" : "fcbb7b09-6ca2-43f1-9c6a-ab074489a058",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "NYCTaxilocal2df3c52a-eba2-43cd-8a4e-ff0cd5bd7a79",
+      "name" : "NYCTaxilocald76bbd49-18b6-44d9-a4df-da6bbd8b6f47",
       "sdcVersion" : "3.1.3.0",
-      "sdcId" : "fa229698-51f8-11e8-a888-41b2596f9322"
+      "sdcId" : "c3c4392b-5361-11e8-9cb6-25116ca5e2ff"
     },
     "metadata" : {
       "labels" : [ ]
@@ -1049,9 +865,26 @@
       "timestamp" : 1525708074692,
       "valid" : true
     } ],
-    "dataRuleDefinitions" : [ ],
+    "dataRuleDefinitions" : [ {
+      "id" : "dataRule1525857660997",
+      "label" : "Missing Card Numbers",
+      "lane" : "StreamSelector_01OutputLane1525713705736",
+      "samplingPercentage" : 35.0,
+      "samplingRecordsToRetain" : 10,
+      "condition" : "${record:value(\"/credit_card\") == \"\"}",
+      "alertEnabled" : true,
+      "alertText" : "At least 10 missing credit card numbers!",
+      "thresholdType" : "COUNT",
+      "thresholdValue" : "10",
+      "minVolume" : 1000,
+      "meterEnabled" : true,
+      "sendEmail" : false,
+      "enabled" : true,
+      "timestamp" : 0,
+      "valid" : true
+    } ],
     "driftRuleDefinitions" : [ ],
-    "uuid" : "df6f11e7-b00e-423e-8af5-17d3db59d534",
+    "uuid" : "f830a973-1835-454d-be5b-b4ea0b48a26f",
     "configuration" : [ {
       "name" : "emailIDs",
       "value" : [ ]
@@ -1059,8 +892,8 @@
       "name" : "webhookConfigs",
       "value" : [ ]
     } ],
-    "ruleIssues" : [ ],
-    "configIssues" : [ ]
+    "configIssues" : [ ],
+    "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null
 }
