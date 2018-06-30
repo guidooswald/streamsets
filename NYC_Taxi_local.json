@@ -299,7 +299,7 @@
         "value" : "DELIMITED"
       }, {
         "name" : "conf.spoolDir",
-        "value" : "/home/centos/taxi/origin"
+        "value" : "/tmp/streamsets/taxi/origin"
       }, {
         "name" : "conf.numberOfThreads",
         "value" : 1
@@ -534,7 +534,7 @@
         "value" : false
       }, {
         "name" : "configs.dirPathTemplate",
-        "value" : "/home/centos/taxi/out"
+        "value" : "/tmp/streamsets/taxi/out"
       }, {
         "name" : "configs.timeZoneID",
         "value" : "UTC"
@@ -717,7 +717,7 @@
       "stageVersion" : "1",
       "configuration" : [ {
         "name" : "directory",
-        "value" : "/home/centos/taxi/error"
+        "value" : "/tmp/streamsets/taxi/error"
       }, {
         "name" : "uniquePrefix",
         "value" : "err_"
